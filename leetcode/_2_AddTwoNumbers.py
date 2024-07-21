@@ -7,6 +7,9 @@ class ListNode:
         self.next = next
 
     def __str__(self):
+        """
+            This is to String method.
+        """
         str2 = str(self.val)
         temp = self.next
         while temp:
@@ -14,7 +17,9 @@ class ListNode:
             temp = temp.next
 
         return str2
+    
 class Solution:
+    
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         carry = 0; answer = None; prev = None
 
