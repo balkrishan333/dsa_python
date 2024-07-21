@@ -19,46 +19,25 @@ class ListNode:
         return str2
     
 class Solution:
-    
+
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        carry = 0; answer = None; prev = None
+        carry = 0
+        answer = ListNode()
+        prev = answer
 
-        while l1 and l2:
-            sum = l1.val + l2.val + carry
-            val = sum % 10
-            carry = sum // 10
-            l3 = ListNode(val)
+        while l1 or l2 or carry > 0:
+            if l1:
+                carry += l1.val
+                l1 = l1.next          
+            if l2:
+                carry += l2.val
+                l2 = l2.next
 
-            if answer is None:
-                answer = l3
-            else:
-                prev.next = l3
-
-            prev = l3
-            l1 = l1.next
-            l2 = l2.next
-
-        leftover = None
-        if l1:
-            leftover = l1
-
-        if l2:
-            leftover = l2
-
-        while leftover:
-            if carry == 1 and leftover.val == 9:
-                prev.next = ListNode(0)
-            else:
-                prev.next = ListNode(leftover.val+carry)
-                carry = 0
-
+            prev.next = ListNode(carry % 10)
             prev = prev.next
-            leftover = leftover.next
+            carry = carry //10
 
-        if carry == 1:
-            prev.next = ListNode(carry)
-
-        return answer
+        return answer.next
 
 sln = Solution()
 # l1 = ListNode(9, ListNode(9, ListNode(9, ListNode(9, ListNode(9, ListNode(9, ListNode(9)))))))
