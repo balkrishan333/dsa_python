@@ -21,6 +21,3 @@ class Solution:
 sln = Solution()
 points = [[1,1],[3,4],[-1,0]]
 print(sln.minTimeToVisitAllPoints(points))
-
-
-
